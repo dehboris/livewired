@@ -43,7 +43,7 @@ composer require kodekeep/livewired
 
 ## Usage
 
-There are two ways in which the components of this package can be consumed. The first is through component registration and the second is by creating your own component and extending ours.
+There are two ways in which the components of this package can be consumed. The first is through component registration and the second is by creating your own component and extending ours. Both approaches have their benefits but as always it's up to you as a developer to choose the best one for your situation.
 
 ### Registration
 
