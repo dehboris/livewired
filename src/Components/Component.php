@@ -21,13 +21,13 @@ class Component extends Livewire
 {
     public function callMethod($method, $params = [])
     {
-        if (method_exists($this, $beforeMethod = 'before'.Str::studly($method))) {
+        if ($this->hasMethodOrMacro($beforeMethod = 'before'.Str::studly($method))) {
             $this->$beforeMethod();
         }
 
         $result = parent::callMethod($method, $params);
 
-        if (method_exists($this, $afterMethod = 'after'.Str::studly($method))) {
+        if ($this->hasMethodOrMacro($afterMethod = 'after'.Str::studly($method))) {
             $this->$afterMethod();
         }
 
@@ -58,5 +58,17 @@ class Component extends Livewire
         $name = str_replace('_', '-', Str::snake($name));
 
         return "{$type}.{$name}";
+    }
+
+    private function hasMethodOrMacro(string $method): bool {
+        return method_exists($this, $method)) {
+            return true;
+        }
+
+        if ($this->hasMacro($method)) {
+            return true;
+        }
+
+        return false;
     }
 }
