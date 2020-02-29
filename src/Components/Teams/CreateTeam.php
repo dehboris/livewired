@@ -15,7 +15,7 @@ namespace KodeKeep\Livewired\Components\Teams;
 
 use KodeKeep\Livewired\Components\Component;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithUser;
-use KodeKeep\Teams\Models\Team;
+use KodeKeep\Teams\Contracts\Team;
 
 class CreateTeam extends Component
 {
@@ -31,7 +31,9 @@ class CreateTeam extends Component
             'name' => ['required', 'max:255'],
         ]);
 
-        $this->team = Team::create([
+        $modelClass = config('teams.models.team');
+
+        $this->team = $modelClass::create([
             'owner_id' => $this->user->id,
             'name'     => $this->name,
         ]);

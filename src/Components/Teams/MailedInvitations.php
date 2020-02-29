@@ -16,7 +16,6 @@ namespace KodeKeep\Livewired\Components\Teams;
 use KodeKeep\Livewired\Components\Component;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithTeam;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithUser;
-use KodeKeep\Teams\Models\TeamInvitation;
 
 class MailedInvitations extends Component
 {
@@ -33,7 +32,9 @@ class MailedInvitations extends Component
     {
         $this->invitationId = $invitationId;
 
-        $invitation = TeamInvitation::findOrFail($this->invitationId);
+        $modelClass = config('teams.models.invitation');
+
+        $invitation = $modelClass::findOrFail($this->invitationId);
 
         abort_unless($this->user->ownsTeam($invitation->team), 403);
 
