@@ -11,13 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add notification method components
+- Added `UpdateTeamPhoto` component
+- Added `UpdateProfilePhoto` component
 
 ## 0.1.6 - 2020-02-29
 
 ### Added
 
-- Add notification method components
+- Added notification method components
 
 ## 0.1.5 - 2020-02-29
 
@@ -35,7 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add `UpdateProfileInformation` component
+- Added `UpdateProfileInformation` component
 
 ## 0.1.2 - 2020-02-29
 
