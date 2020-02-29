@@ -60,7 +60,7 @@ class Component extends Livewire
         return "{$type}.{$name}";
     }
 
-    private function hasMethodOrMacro(string $method): bool
+    protected function hasMethodOrMacro(string $method): bool
     {
         if (method_exists($this, $method)) {
             return true;

@@ -18,7 +18,6 @@ use Illuminate\Support\Str;
 use KodeKeep\Livewired\Components\Component;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithTeam;
 use KodeKeep\Teams\Contracts\Team;
-use KodeKeep\Teams\Contracts\TeamInvitation;
 use Ramsey\Uuid\Uuid;
 
 class InviteTeamMember extends Component
@@ -28,6 +27,8 @@ class InviteTeamMember extends Component
     public ?string $email = null;
 
     public ?string $role = 'member';
+
+    public array $permissions = [];
 
     public function inviteTeamMember(): void
     {
@@ -65,26 +66,6 @@ class InviteTeamMember extends Component
         $this->emit('refreshTeamMembers');
     }
 
-    protected function whenEmailAlreadyOnTeam(): void
-    {
-        //
-    }
-
-    protected function whenEmailAlreadyInvited(): void
-    {
-        //
-    }
-
-    protected function inviteExistingUser(TeamInvitation $invitation): void
-    {
-        //
-    }
-
-    protected function inviteNewUser(TeamInvitation $invitation): void
-    {
-        //
-    }
-
     protected function emailAlreadyOnTeam(Team $team): bool
     {
         return $team->members()->where('email', $this->email)->exists();
@@ -98,11 +79,13 @@ class InviteTeamMember extends Component
     protected function createInvitation(?Authenticatable $invitedUser)
     {
         return $this->team->invitations()->create([
-            'id'      => Uuid::uuid4(),
-            'user_id' => $invitedUser ? $invitedUser->id : null,
-            'role'    => $this->role,
-            'email'   => $this->email,
-            'token'   => Str::random(40),
+            'id'           => Uuid::uuid4(),
+            'user_id'      => $invitedUser ? $invitedUser->id : null,
+            'role'         => $this->role,
+            'permissions'  => $this->permissions,
+            'email'        => $this->email,
+            'accept_token' => Str::random(40),
+            'reject_token' => Str::random(40),
         ]);
     }
 }
