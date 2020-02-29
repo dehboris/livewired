@@ -36,9 +36,4 @@ class UpdatePersonalAccessToken extends Component
 
         $this->emit('refreshPersonalTokens');
     }
-
-    public function getTokenProperty(): ?PersonalAccessToken
-    {
-        return $this->user->tokens()->find($this->tokenId);
-    }
 }
