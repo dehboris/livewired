@@ -36,6 +36,10 @@ class Component extends Livewire
 
     public function render(): View
     {
+        if (Str::startsWith(static::class, 'App\Http\Livewire')) {
+            return parent::render();
+        }
+
         if (property_exists($this, 'componentView')) {
             return view($this->componentView);
         }
@@ -45,7 +49,10 @@ class Component extends Livewire
 
     protected function getViewName(): string
     {
-        [$type, $name] = explode('\\', str_replace('KodeKeep\\Livewired\\Components\\', null, static::class));
+        $classPath = str_replace('App\\Http\\Livewire\\', null, static::class);
+        $classPath = str_replace('KodeKeep\\Livewired\\Components\\', null, static::class);
+
+        [$type, $name] = explode('\\', $classPath);
 
         $type = str_replace('_', '-', Str::snake($type));
         $name = str_replace('_', '-', Str::snake($name));
