@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.1.9 - 2020-02-29
+
+### Fixed
+
+- Use configured models from `kodekeep/laravel-teams`
+
 ## 0.1.8 - 2020-02-29
 
 ### Fixed
