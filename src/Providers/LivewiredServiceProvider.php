@@ -24,9 +24,9 @@ class LivewiredServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->loadViewsFrom(__DIR__.'/../../resources/views', 'livewired');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'livewired');
 
+        if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../../config/livewired.php' => $this->app->configPath('livewired.php'),
             ], 'config');
