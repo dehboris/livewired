@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Components\Concerns;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 trait InteractsWithUser
 {
-    public function getUserProperty(): User
+    public function getUserProperty(): Authenticatable
     {
         return Auth::user();
     }

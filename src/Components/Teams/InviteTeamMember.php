@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Components\Teams;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 use KodeKeep\Livewired\Components\Component;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithTeam;
@@ -48,7 +48,9 @@ class InviteTeamMember extends Component
             return;
         }
 
-        $invitedUser = User::where('email', $this->email)->first();
+        $userClass = config('auth.providers.users.model');
+
+        $invitedUser = $userClass::where('email', $this->email)->first();
 
         $invitation = $this->createInvitation($invitedUser);
 
@@ -93,7 +95,7 @@ class InviteTeamMember extends Component
         return $team->invitations()->where('email', $this->email)->exists();
     }
 
-    protected function createInvitation(?User $invitedUser)
+    protected function createInvitation(?Authenticatable $invitedUser)
     {
         return $this->team->invitations()->create([
             'id'      => Uuid::uuid4(),

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Components\Teams;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use KodeKeep\Livewired\Components\Component;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithTeam;
 use KodeKeep\Livewired\Components\Concerns\InteractsWithUser;
@@ -23,15 +23,13 @@ class UpdateTeamMember extends Component
     use InteractsWithTeam;
     use InteractsWithUser;
 
-    public ?User $user = null;
+    public ?Authenticatable $user = null;
 
     public ?string $name = null;
 
     public ?string $role = 'member';
 
-    protected $listeners = ['updateTeamMember' => 'edit'];
-
-    public function mount(User $user): void
+    public function mount(Authenticatable $user): void
     {
         $this->user = $user;
     }
