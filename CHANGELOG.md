@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.2.0 - 2020-02-29
+
+### Added
+
+- Added `ExportTeamData` component
+- Added `ExportProfileData` component
+
+### Fixed
+
+- Various wrong type hints
+
 ## 0.1.9 - 2020-02-29
 
 ### Fixed
