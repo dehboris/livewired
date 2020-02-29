@@ -23,18 +23,18 @@ class CreateTeam extends Component
 
     public ?string $name = null;
 
+    public ?Team $team = null;
+
     public function createTeam(): void
     {
         $this->validate([
             'name' => ['required', 'max:255'],
         ]);
 
-        Team::create([
+        $this->team = Team::create([
             'owner_id' => $this->user->id,
             'name'     => $this->name,
         ]);
-
-        $this->reset();
 
         $this->emit('refreshTeams');
     }
