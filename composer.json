@@ -20,6 +20,7 @@
         "illuminate/contracts": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
         "kodekeep/laravel-addresses": "^1.0",
+        "kodekeep/laravel-notification-methods": "^1.0",
         "kodekeep/laravel-teams": "^1.0",
         "kodekeep/laravel-validation-rules": "^1.0",
         "laravel/airlock": "^0.2",
