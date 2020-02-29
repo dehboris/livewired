@@ -43,10 +43,41 @@ composer require kodekeep/livewired
 
 ## Usage
 
-``` php
-$skeleton = new KodeKeep\Skeleton();
-echo $skeleton->echoPhrase('Hello, KodeKeep!');
+There are two ways in which the components of this package can be consumed. The first is through component registration and the second is by creating your own component and extending ours.
+
+### Registration
+
+If you don't need to overwrite any methods of the component but only a before or after hook you can register the component directly with Livewire instead of relying on discovery. Place the following code in the `boot` method of any service provider to register the component and an `after` hook.
+
+```php
+Livewire::component('update-password', UpdatePassword::class);
+
+UpdatePassword::macro('afterUpdatePassword', fn () => flash()->success('Your password has been updated!'));
 ```
+
+**This approach is recommended if you don't plan on overwriting behaviors and have small `before` and `after` hooks.**
+
+### Extension
+
+If you want to alter or extend the behavior of a component you will need to create your own and extend the one you wish to work with. Place the following code in your desired component and call the `updatePassword` password method to see `afterUpdatePassword` take effect.
+
+```php
+namespace App\Http\Livewire;
+
+use KodeKeep\Livewired\Components\Security\UpdatePassword as Component;
+
+class UpdatePassword extends Component
+{
+    public function afterUpdatePassword(): void
+    {
+        $this->reset();
+
+        flash()->success('Your password has been updated!');
+    }
+}
+```
+
+**This approach is recommended if you need to perform larger changes or have complex `before` and `after` hooks. In these scenarios you should go with this approach to make it easier to maintain and test your component.**
 
 ## Testing
 
