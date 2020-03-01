@@ -40,10 +40,6 @@ class Component extends Livewire
             return parent::render();
         }
 
-        if (property_exists($this, 'componentView')) {
-            return view($this->componentView);
-        }
-
         return view('livewired::'.$this->getViewName());
     }
 
@@ -54,14 +50,6 @@ class Component extends Livewire
 
     protected function hasMethodOrMacro(string $method): bool
     {
-        if (method_exists($this, $method)) {
-            return true;
-        }
-
-        if ($this->hasMacro($method)) {
-            return true;
-        }
-
-        return false;
+        return method_exists($this, $method) ?? $this->hasMacro($method);
     }
 }
