@@ -28,7 +28,7 @@ class UpdateNotificationMethod extends CreateNotificationMethod
     {
         $this->notificationMethodId = $notificationMethodId;
 
-        $this->fill($this->getNotificationMethod());
+        $this->fill($this->notificationMethod);
     }
 
     public function updateNotificationMethod(): void
@@ -37,12 +37,12 @@ class UpdateNotificationMethod extends CreateNotificationMethod
 
         $data = $this->validate((new UpdateNotificationMethodRequest())->rules());
 
-        $this->getNotificationMethod()->update($data);
+        $this->notificationMethod->update($data);
 
         $this->emit('refreshNotificationMethods');
     }
 
-    private function getNotificationMethod(): NotificationMethod
+    public function getNotificationMethodProperty(): ?NotificationMethod
     {
         return $this->team->notificationMethods()->findOrFail($this->notificationMethodId);
     }

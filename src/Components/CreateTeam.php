@@ -34,6 +34,8 @@ class CreateTeam extends Component
             'name'     => $this->name,
         ]);
 
+        $this->team->addMember($this->user, 'owner', ['*']);
+
         $this->emit('refreshTeams');
     }
 }

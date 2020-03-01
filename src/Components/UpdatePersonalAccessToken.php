@@ -31,20 +31,20 @@ class UpdatePersonalAccessToken extends Component
     {
         $this->tokenId = $tokenId;
 
-        $this->fill($this->getPersonalAccessToken());
+        $this->fill($this->personalAccessToken);
     }
 
     public function updatePersonalAccessToken(): void
     {
         $this->validate(['name' => ['required', 'max:255']]);
 
-        $this->getPersonalAccessToken()->update(['name' => $this->name]);
+        $this->personalAccessToken->update(['name' => $this->name]);
 
         $this->emit('refreshPersonalAccessTokens');
     }
 
-    private function getPersonalAccessToken(): PersonalAccessToken
+    public function getPersonalAccessTokenProperty(): ?PersonalAccessToken
     {
-        return $this->user->tokens()->findOrFail($this->tokenId);
+        return $this->user->tokens()->find($this->tokenId);
     }
 }

@@ -32,7 +32,7 @@ class UpdateTeamMember extends Component
     {
         $this->userId = $userId;
 
-        $this->fill($this->getTeamMember());
+        $this->fill($this->teamMember);
     }
 
     public function updateTeamMember(): void
@@ -43,7 +43,7 @@ class UpdateTeamMember extends Component
             'role' => ['required', 'in:owner,member'],
         ]);
 
-        $this->team->members()->updateExistingPivot($this->getTeamMember()->id, [
+        $this->team->members()->updateExistingPivot($this->teamMember->id, [
             'role' => $this->role,
         ]);
 
@@ -52,8 +52,8 @@ class UpdateTeamMember extends Component
         $this->emit('refreshTeamMembers');
     }
 
-    private function getTeamMember()
+    public function getTeamMemberProperty()
     {
-        return $this->team->members()->where('user_id', $this->userId)->firstOrFail();
+        return $this->team->members()->where('user_id', $this->userId)->first();
     }
 }
