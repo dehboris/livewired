@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\CreateNotificationMethod;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\CreateNotificationMethod
- */
 class CreateNotificationMethodTest extends TestCase
 {
     /** @test */

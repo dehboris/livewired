@@ -19,9 +19,6 @@ use KodeKeep\Livewired\Tests\User;
 use KodeKeep\Teams\Models\Team;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\TeamSwitcher
- */
 class TeamSwitcherTest extends TestCase
 {
     /** @test */

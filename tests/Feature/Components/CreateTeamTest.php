@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\CreateTeam;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\CreateTeam
- */
 class CreateTeamTest extends TestCase
 {
     /** @test */

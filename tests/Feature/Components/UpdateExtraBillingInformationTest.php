@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\UpdateExtraBillingInformation;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateExtraBillingInformation
- */
 class UpdateExtraBillingInformationTest extends TestCase
 {
     /** @test */

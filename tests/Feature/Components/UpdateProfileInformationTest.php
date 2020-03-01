@@ -18,9 +18,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\Livewired\Tests\User;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateProfileInformation
- */
 class UpdateProfileInformationTest extends TestCase
 {
     /** @test */

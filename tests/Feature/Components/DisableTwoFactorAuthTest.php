@@ -19,9 +19,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\Livewired\Tests\User;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\DisableTwoFactorAuth
- */
 class DisableTwoFactorAuthTest extends TestCase
 {
     /** @test */

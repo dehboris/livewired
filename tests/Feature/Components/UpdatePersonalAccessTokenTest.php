@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\UpdatePersonalAccessToken;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdatePersonalAccessToken
- */
 class UpdatePersonalAccessTokenTest extends TestCase
 {
     /** @test */

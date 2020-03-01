@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace KodeKeep\Livewired\Components;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class ManageTeamMembers extends Component

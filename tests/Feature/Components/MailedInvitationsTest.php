@@ -21,9 +21,6 @@ use KodeKeep\Teams\Models\Team;
 use Livewire\Livewire;
 use Ramsey\Uuid\Uuid;
 
-/**
- * @covers \KodeKeep\Livewired\Components\MailedInvitations
- */
 class MailedInvitationsTest extends TestCase
 {
     /** @test */

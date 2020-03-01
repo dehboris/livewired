@@ -18,9 +18,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\ValidationRules\Rules\CurrentPassword;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdatePassword
- */
 class UpdatePasswordTest extends TestCase
 {
     /** @test */

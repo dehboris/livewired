@@ -18,9 +18,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\Livewired\Tests\User;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\ManageTeamMembers
- */
 class ManageTeamMembersTest extends TestCase
 {
     /** @test */

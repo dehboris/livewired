@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\UpdateBillingAddress;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateBillingAddress
- */
 class UpdateBillingAddressTest extends TestCase
 {
     /** @test */

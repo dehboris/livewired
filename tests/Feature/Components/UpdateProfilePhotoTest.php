@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\UpdateProfilePhoto;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateProfilePhoto
- */
 class UpdateProfilePhotoTest extends TestCase
 {
     public function can_update_the_profile_photo()

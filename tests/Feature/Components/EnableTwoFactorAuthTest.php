@@ -18,9 +18,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 use PragmaRX\Google2FALaravel\Facade as Google2FA;
 
-/**
- * @covers \KodeKeep\Livewired\Components\EnableTwoFactorAuth
- */
 class EnableTwoFactorAuthTest extends TestCase
 {
     /** @test */

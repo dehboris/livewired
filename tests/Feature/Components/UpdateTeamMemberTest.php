@@ -17,9 +17,6 @@ use KodeKeep\Livewired\Components\UpdateTeamMember;
 use KodeKeep\Livewired\Tests\TestCase;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateTeamMember
- */
 class UpdateTeamMemberTest extends TestCase
 {
     /** @test */

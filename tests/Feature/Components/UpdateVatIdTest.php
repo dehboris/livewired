@@ -18,9 +18,6 @@ use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\ValidationRules\Rules\VatId;
 use Livewire\Livewire;
 
-/**
- * @covers \KodeKeep\Livewired\Components\UpdateVatId
- */
 class UpdateVatIdTest extends TestCase
 {
     /** @test */

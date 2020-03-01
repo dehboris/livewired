@@ -79,7 +79,7 @@ $rules = [
     'object_operator_without_whitespace' => true,
     'ordered_imports' => ['sortAlgorithm' => 'alpha'],
     'php_unit_strict' => true,
-    'php_unit_test_class_requires_covers' => true,
+    'php_unit_test_class_requires_covers' => false,
     'phpdoc_add_missing_param_annotation' => true,
     'phpdoc_align' => true,
     'phpdoc_indent' => true,
