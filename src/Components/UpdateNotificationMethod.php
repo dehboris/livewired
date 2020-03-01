@@ -18,13 +18,17 @@ use KodeKeep\NotificationMethods\Models\NotificationMethod;
 
 class UpdateNotificationMethod extends CreateNotificationMethod
 {
-    public $notificationMethod = null;
+    public ?int $notificationMethodId = null;
 
-    public function mount(NotificationMethod $notificationMethod): void
+    protected $listeners = [
+        'refreshTwoFactorAuth' => 'refreshTwoFactorAuth',
+    ];
+
+    public function editNotificationMethod(int $notificationMethodId): void
     {
-        $this->notificationMethod = $notificationMethod;
+        $this->notificationMethodId = $notificationMethodId;
 
-        $this->fill($this->notificationMethod);
+        $this->fill($this->getNotificationMethod());
     }
 
     public function updateNotificationMethod(): void
@@ -33,8 +37,13 @@ class UpdateNotificationMethod extends CreateNotificationMethod
 
         $data = $this->validate((new UpdateNotificationMethodRequest())->rules());
 
-        $this->notificationMethod->update($data);
+        $this->getNotificationMethod()->update($data);
 
         $this->emit('refreshNotificationMethods');
+    }
+
+    private function getNotificationMethod(): NotificationMethod
+    {
+        return $this->team->notificationMethods()->findOrFail($this->notificationMethodId);
     }
 }

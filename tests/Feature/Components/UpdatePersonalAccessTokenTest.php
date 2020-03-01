@@ -24,7 +24,8 @@ class UpdatePersonalAccessTokenTest extends TestCase
     {
         $this->actingAs($user = $this->user());
 
-        Livewire::test(UpdatePersonalAccessToken::class, $this->createToken($user))
+        Livewire::test(UpdatePersonalAccessToken::class)
+            ->call('editPersonalAccessToken', $this->createToken($user)->id)
             ->call('updatePersonalAccessToken')
             ->assertHasNoErrors('name');
     }
@@ -34,7 +35,8 @@ class UpdatePersonalAccessTokenTest extends TestCase
     {
         $this->actingAs($user = $this->user());
 
-        Livewire::test(UpdatePersonalAccessToken::class, $this->createToken($user))
+        Livewire::test(UpdatePersonalAccessToken::class)
+            ->call('editPersonalAccessToken', $this->createToken($user)->id)
             ->set('name', null)
             ->call('updatePersonalAccessToken')
             ->assertHasErrors(['name' => 'required']);
@@ -45,7 +47,8 @@ class UpdatePersonalAccessTokenTest extends TestCase
     {
         $this->actingAs($user = $this->user());
 
-        Livewire::test(UpdatePersonalAccessToken::class, $this->createToken($user))
+        Livewire::test(UpdatePersonalAccessToken::class)
+            ->call('editPersonalAccessToken', $this->createToken($user)->id)
             ->set('name', str_repeat('x', 256))
             ->call('updatePersonalAccessToken')
             ->assertHasErrors(['name' => 'max']);

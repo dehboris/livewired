@@ -26,7 +26,8 @@ class UpdateTeamMemberTest extends TestCase
 
         $this->actingAs($team->owner);
 
-        Livewire::test(UpdateTeamMember::class, $team->owner)
+        Livewire::test(UpdateTeamMember::class)
+            ->call('editTeamMember', $team->owner->id)
             ->set('role', 'member')
             ->call('updateTeamMember')
             ->assertEmitted('refreshTeamMembers');

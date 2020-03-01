@@ -19,23 +19,32 @@ class UpdatePersonalAccessToken extends Component
 {
     use Concerns\InteractsWithUser;
 
-    public $token;
+    public ?int $tokenId = null;
 
     public ?string $name = null;
 
-    public function mount(PersonalAccessToken $token): void
-    {
-        $this->token = $token;
+    protected $listeners = [
+        'editPersonalAccessToken' => 'editPersonalAccessToken',
+    ];
 
-        $this->fill($this->token);
+    public function editPersonalAccessToken(int $tokenId): void
+    {
+        $this->tokenId = $tokenId;
+
+        $this->fill($this->getPersonalAccessToken());
     }
 
     public function updatePersonalAccessToken(): void
     {
         $this->validate(['name' => ['required', 'max:255']]);
 
-        $this->token->update(['name' => $this->name]);
+        $this->getPersonalAccessToken()->update(['name' => $this->name]);
 
         $this->emit('refreshPersonalAccessTokens');
+    }
+
+    private function getPersonalAccessToken(): PersonalAccessToken
+    {
+        return $this->user->tokens()->findOrFail($this->tokenId);
     }
 }

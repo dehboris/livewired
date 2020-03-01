@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
+use KodeKeep\Livewired\Tests\Team;
 use KodeKeep\NotificationMethods\Models\NotificationMethod;
-use KodeKeep\Teams\Models\Team;
 
 $factory->define(NotificationMethod::class, function (Faker $faker) {
     return [

@@ -34,11 +34,7 @@ class UpdateBillingAddress extends Component
 
     public function mount(): void
     {
-        $addresses = $this->team->addresses()->whereType('billing');
-
-        if ($addresses->count()) {
-            $this->fill($addresses->firstOrFail());
-        }
+        $this->setBillingAddress();
     }
 
     public function updateBillingAddress(): void
@@ -59,5 +55,16 @@ class UpdateBillingAddress extends Component
             ['type' => 'billing'],
             array_merge($validated, ['type' => 'billing'])
         );
+
+        $this->setBillingAddress();
+    }
+
+    public function setBillingAddress(): void
+    {
+        $addresses = $this->team->addresses()->whereType('billing');
+
+        if ($addresses->count()) {
+            $this->fill($addresses->firstOrFail());
+        }
     }
 }

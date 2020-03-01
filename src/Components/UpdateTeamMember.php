@@ -13,22 +13,26 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Components;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-
 class UpdateTeamMember extends Component
 {
     use Concerns\InteractsWithTeam;
     use Concerns\InteractsWithUser;
 
-    public $user = null;
-
-    public ?string $name = null;
+    public ?int $userId = null;
 
     public ?string $role = 'member';
 
-    public function mount(Authenticatable $user): void
+    public $permissions = [];
+
+    protected $listeners = [
+        'editTeamMember' => 'editTeamMember',
+    ];
+
+    public function editTeamMember(int $userId): void
     {
-        $this->user = $user;
+        $this->userId = $userId;
+
+        $this->fill($this->getTeamMember());
     }
 
     public function updateTeamMember(): void
@@ -39,12 +43,17 @@ class UpdateTeamMember extends Component
             'role' => ['required', 'in:owner,member'],
         ]);
 
-        $this->team->members()->updateExistingPivot($this->user->id, [
+        $this->team->members()->updateExistingPivot($this->getTeamMember()->id, [
             'role' => $this->role,
         ]);
 
         $this->reset();
 
         $this->emit('refreshTeamMembers');
+    }
+
+    private function getTeamMember()
+    {
+        return $this->team->members()->where('user_id', $this->userId)->firstOrFail();
     }
 }

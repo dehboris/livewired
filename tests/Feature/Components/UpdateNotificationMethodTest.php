@@ -344,10 +344,14 @@ class UpdateNotificationMethodTest extends TestCase
 
     private function createComponent(string $state): TestableLivewire
     {
-        $this->actingAs($this->team()->owner);
+        $team = $this->team();
 
-        $notificationMethod = factory(NotificationMethod::class)->states($state)->create();
+        $this->actingAs($team->owner);
 
-        return Livewire::test(UpdateNotificationMethod::class, $notificationMethod);
+        $notificationMethod = factory(NotificationMethod::class)
+            ->states($state)
+            ->create(['notifiable_id' => $team->id]);
+
+        return Livewire::test(UpdateNotificationMethod::class)->call('editNotificationMethod', $notificationMethod->id);
     }
 }
