@@ -22,7 +22,7 @@ class LeaveTeam extends Component
     public $team;
 
     protected $listeners = [
-        'leaveTeam' => 'askForConfirmation'
+        'leaveTeam' => 'askForConfirmation',
     ];
 
     public function mount(Team $team): void

@@ -22,7 +22,7 @@ class ManageTeamMembers extends Component
     use Concerns\InteractsWithUser;
 
     protected $listeners = [
-        'refreshTeamMembers' => '$refresh'
+        'refreshTeamMembers' => '$refresh',
     ];
 
     public function deleteTeamMember(string $id): void

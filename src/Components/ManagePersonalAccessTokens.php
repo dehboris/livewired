@@ -20,7 +20,7 @@ class ManagePersonalAccessTokens extends Component
     use Concerns\InteractsWithUser;
 
     protected $listeners = [
-        'refreshPersonalAccessTokens' => '$refresh'
+        'refreshPersonalAccessTokens' => '$refresh',
     ];
 
     public function deletePersonalAccessToken(string $id): void
