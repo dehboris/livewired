@@ -25,6 +25,7 @@ use Livewire\LivewireServiceProvider;
 use Mpociot\VatCalculator\VatCalculatorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use PragmaRX\Google2FALaravel\ServiceProvider as TwoFactorServiceProvider;
+use Spatie\PersonalDataExport\PersonalDataExportServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -58,6 +59,8 @@ abstract class TestCase extends Orchestra
         $app['config']->set('teams.models.team', Team::class);
 
         $app['config']->set('teams.models.user', User::class);
+
+        $app['config']->set('personal-data-export.disk', 'local');
 
         $app['config']->set('notification-methods.channels', [
             'discord' => [
@@ -105,14 +108,15 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            TwoFactorServiceProvider::class,
             AddressesServiceProvider::class,
-            NotificationMethodsServiceProvider::class,
-            LivewireServiceProvider::class,
             AirlockServiceProvider::class,
-            VatCalculatorServiceProvider::class,
-            TeamsServiceProvider::class,
             LivewiredServiceProvider::class,
+            LivewireServiceProvider::class,
+            NotificationMethodsServiceProvider::class,
+            PersonalDataExportServiceProvider::class,
+            TeamsServiceProvider::class,
+            TwoFactorServiceProvider::class,
+            VatCalculatorServiceProvider::class,
         ];
     }
 
@@ -136,6 +140,7 @@ abstract class TestCase extends Orchestra
         $team = Team::create([
             'owner_id' => $user->id,
             'name'     => $this->faker->name,
+            'slug'     => $this->faker->slug,
         ]);
 
         $team->addMember($user, 'owner', []);

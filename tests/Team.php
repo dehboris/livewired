@@ -13,12 +13,25 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Tests;
 
+use Illuminate\Support\Str;
 use KodeKeep\Addresses\Concerns\HasAddresses;
 use KodeKeep\NotificationMethods\Concerns\HasNotificationMethods;
 use KodeKeep\Teams\Models\Team as BaseTeam;
+use Spatie\PersonalDataExport\ExportsPersonalData;
+use Spatie\PersonalDataExport\PersonalDataSelection;
 
-class Team extends BaseTeam
+class Team extends BaseTeam implements ExportsPersonalData
 {
     use HasAddresses;
     use HasNotificationMethods;
+
+    public function selectPersonalData(PersonalDataSelection $personalData): void
+    {
+        $personalData->add('team.json', ['name' => $this->name, 'email' => $this->email]);
+    }
+
+    public function personalDataExportName(): string
+    {
+        return 'personal-data-'.Str::slug($this->name).'.zip';
+    }
 }

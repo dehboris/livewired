@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Components;
 
+use Illuminate\Support\Facades\Event;
 use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 
 class ExportTeamData extends Component
@@ -21,6 +22,6 @@ class ExportTeamData extends Component
 
     public function exportTeamData(): void
     {
-        dispatch(new CreatePersonalDataExportJob($this->team));
+        Event::dispatch(new CreatePersonalDataExportJob($this->team));
     }
 }
