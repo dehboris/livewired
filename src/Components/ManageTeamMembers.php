@@ -37,11 +37,6 @@ class ManageTeamMembers extends Component
         $this->emit('refreshTeamMembers');
     }
 
-    public function getMembersProperty(): Collection
-    {
-        return $this->team->members;
-    }
-
     protected function canBeRemoved(Model $member): bool
     {
         $currentUser = Auth::user();
