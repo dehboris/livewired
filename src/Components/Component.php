@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Livewired.
+ * This file is part of kodekeep/livewired.
  *
  * (c) KodeKeep <hello@kodekeep.com>
  *
@@ -44,20 +44,12 @@ class Component extends Livewire
             return view($this->componentView);
         }
 
-        return view('livewired::components.'.$this->getViewName());
+        return view('livewired::'.$this->getViewName());
     }
 
     protected function getViewName(): string
     {
-        $classPath = str_replace('App\\Http\\Livewire\\', null, static::class);
-        $classPath = str_replace('KodeKeep\\Livewired\\Components\\', null, static::class);
-
-        [$type, $name] = explode('\\', $classPath);
-
-        $type = str_replace('_', '-', Str::snake($type));
-        $name = str_replace('_', '-', Str::snake($name));
-
-        return "{$type}.{$name}";
+        return str_replace('_', '-', Str::snake(class_basename(static::class)));
     }
 
     protected function hasMethodOrMacro(string $method): bool

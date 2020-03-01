@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Livewired.
+ * This file is part of kodekeep/livewired.
  *
  * (c) KodeKeep <hello@kodekeep.com>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace KodeKeep\Livewired\Feature\Livewire;
+namespace KodeKeep\Livewired\Feature\Components;
 
-use KodeKeep\Livewired\Components\Security\UpdatePassword;
+use KodeKeep\Livewired\Components\UpdatePassword;
 use KodeKeep\Livewired\Tests\TestCase;
 use KodeKeep\ValidationRules\Rules\CurrentPassword;
 use Livewire\Livewire;
