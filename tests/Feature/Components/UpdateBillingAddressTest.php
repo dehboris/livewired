@@ -20,9 +20,39 @@ use Livewire\Livewire;
 class UpdateBillingAddressTest extends TestCase
 {
     /** @test */
-    public function can_update_the_billing_address()
+    public function can_create_a_billing_address()
     {
         $this->actingAs($this->team()->owner);
+
+        Livewire::test(UpdateBillingAddress::class)
+            ->set('name', $this->faker->name)
+            ->set('address_line_1', $this->faker->address)
+            ->set('address_line_2', $this->faker->address)
+            ->set('city', $this->faker->city)
+            ->set('state', $this->faker->stateAbbr)
+            ->set('zip', $this->faker->postcode)
+            ->set('country', $this->faker->countryCode)
+            ->call('updateBillingAddress')
+            ->assertHasNoErrors();
+    }
+
+    /** @test */
+    public function can_update_a_billing_address()
+    {
+        $team  = $this->team();
+
+        $this->actingAs($team->owner);
+
+        $team->addresses()->create([
+            'type'           => 'billing',
+            'name'           => $this->faker->name,
+            'address_line_1' => $this->faker->address,
+            'address_line_2' => $this->faker->address,
+            'city'           => $this->faker->city,
+            'state'          => $this->faker->stateAbbr,
+            'zip'            => $this->faker->postcode,
+            'country'        => $this->faker->countryCode,
+        ]);
 
         Livewire::test(UpdateBillingAddress::class)
             ->set('name', $this->faker->name)

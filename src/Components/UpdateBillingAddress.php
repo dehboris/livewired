@@ -37,7 +37,7 @@ class UpdateBillingAddress extends Component
         $addresses = $this->team->addresses()->whereType('billing');
 
         if ($addresses->count()) {
-            $this->full($addresses->firstOrFail());
+            $this->fill($addresses->firstOrFail());
         }
     }
 

@@ -59,4 +59,31 @@ class ManageTeamMembersTest extends TestCase
             'role'            => 'member',
         ]);
     }
+
+    /** @test */
+    public function can_not_destroy_the_team_if_it_is_the_owner()
+    {
+        $team = $this->team();
+
+        $anotherUser = $this->user();
+        $team->addMember($anotherUser, 'member', []);
+
+        $this->actingAs($anotherUser);
+
+        $this->assertDatabaseHas('team_users', [
+            'team_id' => $team->id,
+            'user_id' => $anotherUser->id,
+            'role'    => 'member',
+        ]);
+
+        Livewire::test(ManageTeamMembers::class)
+            ->call('deleteTeamMember', $anotherUser->id)
+            ->assertForbidden();
+
+        $this->assertDatabaseHas('team_users', [
+            'team_id' => $team->id,
+            'user_id' => $anotherUser->id,
+            'role'    => 'member',
+        ]);
+    }
 }
