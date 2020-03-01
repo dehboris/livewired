@@ -15,8 +15,6 @@ namespace KodeKeep\Livewired\Feature\Components;
 
 use KodeKeep\Livewired\Components\UpdateTeamMember;
 use KodeKeep\Livewired\Tests\TestCase;
-use KodeKeep\Livewired\Tests\User;
-use KodeKeep\Teams\Models\Team;
 use Livewire\Livewire;
 
 /**
@@ -27,24 +25,15 @@ class UpdateTeamMemberTest extends TestCase
     /** @test */
     public function can_update_the_name()
     {
-        [$user, $team] = $this->createModels();
+        $team = $this->team();
 
-        $this->actingAs($user);
+        $this->actingAs($team->owner);
 
-        Livewire::test(UpdateTeamMember::class, $user)
+        Livewire::test(UpdateTeamMember::class, $team->owner)
             ->set('role', 'member')
-            ->call('updateTeamMember');
+            ->call('updateTeamMember')
+            ->assertEmitted('refreshTeamMembers');
 
         $this->assertSame('member', $team->members->first()->pivot->role);
-    }
-
-    private function createModels(): array
-    {
-        $user = factory(User::class)->create();
-
-        $team = factory(Team::class)->create();
-        $team->addMember($user, 'member', []);
-
-        return [$user, $team];
     }
 }

@@ -64,7 +64,7 @@ If you want to alter or extend the behavior of a component you will need to crea
 ```php
 namespace App\Http\Livewire;
 
-use KodeKeep\Livewired\Components\Security\UpdatePassword as Component;
+use KodeKeep\Livewired\Components\UpdatePassword as Component;
 
 class UpdatePassword extends Component
 {
