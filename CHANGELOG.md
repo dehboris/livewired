@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.3.0 - 2020-03-01
+
+### Added
+
+- Test Suite
+
+### Changed
+
+- Require certain components to set their data via event listeners. **This changed was made due to how some components are used in the context of UI/UX to avoid page reloads which means an event listener had to be used because nested Livewire components are not reactive.**
+
 ## 0.2.1 - 2020-02-29
 
 ### Fixed
