@@ -50,6 +50,14 @@ class Component extends Livewire
 
     protected function hasMethodOrMacro(string $method): bool
     {
-        return method_exists($this, $method) ?? $this->hasMacro($method);
+        if ($this->hasMacro($method)) {
+            return true;
+        }
+
+        if (method_exists($this, $method)) {
+            return true;
+        }
+
+        return false;
     }
 }

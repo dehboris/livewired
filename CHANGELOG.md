@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- `hasMethodOrMacro` conditional
+
+## 0.3.1 - 2020-03-01
+
+### Fixed
+
 - Added missing property getters
 - Add team owner after creating a team
 
