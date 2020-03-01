@@ -20,17 +20,26 @@ class UpdateTeamName extends Component
 
     public ?string $name = null;
 
+    public ?string $slug = null;
+
     public function mount(): void
     {
         $this->name = $this->team->name;
+        $this->slug = $this->team->slug;
     }
 
     public function updateTeamName(): void
     {
         abort_unless($this->user->ownsTeam($this->team), 403);
 
-        $this->validate(['name' => ['required', 'max:255']]);
+        $this->validate([
+            'name' => ['required', 'max:255'],
+            'slug' => ['required', 'max:255'],
+        ]);
 
-        $this->team->forceFill(['name' => $this->name])->save();
+        $this->team->forceFill([
+            'name' => $this->name,
+            'slug' => $this->slug,
+        ])->save();
     }
 }
