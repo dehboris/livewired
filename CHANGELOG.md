@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.3.3 - 2020-03-01
+
+### Added
+
+- Added ability to update slug in `UpdateTeamName`
+
 ## 0.3.2 - 2020-03-01
 
 ### Fixed
