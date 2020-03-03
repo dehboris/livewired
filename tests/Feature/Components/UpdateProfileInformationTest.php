@@ -106,7 +106,7 @@ class UpdateProfileInformationTest extends TestCase
 
         $this->actingAs($user);
 
-        Livewire::test(UpdateProfileInformation::class, $user)
+        Livewire::test(UpdateProfileInformation::class)
             ->set('email', $user2->email)
             ->call('updateProfileInformation')
             ->assertHasNoErrors(['email' => 'required']);

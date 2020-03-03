@@ -29,7 +29,7 @@ class ManagePersonalAccessTokensTest extends TestCase
 
         $this->assertCount(2, $user->tokens);
 
-        $component = Livewire::test(ManagePersonalAccessTokens::class, $user);
+        $component = Livewire::test(ManagePersonalAccessTokens::class);
 
         $user->tokens->each(fn ($token) => $component->assertSee($token->name));
     }

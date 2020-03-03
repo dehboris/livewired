@@ -29,7 +29,7 @@ class ManageNotificationMethodsTest extends TestCase
 
         factory(NotificationMethod::class, 10)->states('discord')->create(['notifiable_id' => $team->id]);
 
-        $component = Livewire::test(ManageNotificationMethods::class, $team);
+        $component = Livewire::test(ManageNotificationMethods::class);
 
         $team->notificationMethods->each(fn ($method) => $component->assertSee($method->name));
     }

@@ -15,7 +15,7 @@ namespace KodeKeep\Livewired\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
-use KodeKeep\Addresses\AddressesServiceProvider;
+use KodeKeep\Addresses\Providers\AddressesServiceProvider;
 use KodeKeep\Livewired\Providers\LivewiredServiceProvider;
 use KodeKeep\NotificationMethods\Providers\NotificationMethodsServiceProvider;
 use KodeKeep\Teams\Providers\TeamsServiceProvider;

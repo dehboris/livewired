@@ -60,7 +60,7 @@ class TeamSwitcherTest extends TestCase
         Livewire::test(TeamSwitcher::class)
             ->assertSee($firstTeam->name)
             ->call('switchTeam', $lastTeam->id)
-            ->assertSee('<span>'.$lastTeam->name.'</span>')
+            ->assertSee($lastTeam->name.' is active')
             ->assertSee($firstTeam->name);
     }
 }

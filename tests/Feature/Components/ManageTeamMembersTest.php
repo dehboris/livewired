@@ -29,7 +29,7 @@ class ManageTeamMembersTest extends TestCase
 
         $team->addMember($member = factory(User::class)->create(), 'member', []);
 
-        Livewire::test(ManageTeamMembers::class, $team)
+        Livewire::test(ManageTeamMembers::class)
             ->assertSee('You')
             ->assertSee($member->name);
     }

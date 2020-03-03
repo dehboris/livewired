@@ -34,7 +34,7 @@ class LeaveTeamTest extends TestCase
             'role'            => 'member',
         ]);
 
-        Livewire::test(LeaveTeam::class, $team)
+        Livewire::test(LeaveTeam::class, compact('team'))
             ->call('leaveTeam')
             ->assertEmitted('refreshTeams');
 

@@ -40,7 +40,7 @@ class MailedInvitationsTest extends TestCase
 
         $this->actingAs($team->owner);
 
-        Livewire::test(MailedInvitations::class, $team)
+        Livewire::test(MailedInvitations::class)
             ->call('cancelInvitation', $invitationId);
 
         $this->assertDatabaseMissing('team_invitations', [
