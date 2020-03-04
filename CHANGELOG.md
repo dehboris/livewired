@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.5.2 - 2020-03-04
+
+### Added
+
+- Added `PendingInvitations` component
+
+## 0.5.1 - 2020-03-03
+
+### Changed
+
+- Wrong `kodekeep/laravel-addresses` service provider
+
+## 0.5.0 - 2020-03-03
+
+### Added
+
+- Livewire 1.0 Support
+
+## 0.4.0 - 2020-03-03
+
+### Added
+
+- Airlock 1.0 Support
+
 ## 0.3.3 - 2020-03-01
 
 ### Added
