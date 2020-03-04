@@ -14,13 +14,9 @@ declare(strict_types=1);
 namespace KodeKeep\Livewired\Feature\Components;
 
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use KodeKeep\Livewired\Components\InviteTeamMember;
 use KodeKeep\Livewired\Tests\TestCase;
-use KodeKeep\Livewired\Tests\User;
-use KodeKeep\Teams\Models\Team;
 use Livewire\Livewire;
-use Ramsey\Uuid\Uuid;
 
 class InviteTeamMemberTest extends TestCase
 {
@@ -121,18 +117,5 @@ class InviteTeamMemberTest extends TestCase
             ->set('email', $user->email)
             ->call('inviteTeamMember')
             ->assertEmitted('whenEmailAlreadyInvited');
-    }
-
-    protected function createInvitation(Team $team, User $user): void
-    {
-        $team->invitations()->create([
-            'id'           => Uuid::uuid4(),
-            'user_id'      => $user->id,
-            'role'         => 'member',
-            'permissions'  => [],
-            'email'        => $user->email,
-            'accept_token' => Str::random(40),
-            'reject_token' => Str::random(40),
-        ]);
     }
 }

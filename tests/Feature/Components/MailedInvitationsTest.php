@@ -13,13 +13,9 @@ declare(strict_types=1);
 
 namespace KodeKeep\Livewired\Feature\Components;
 
-use Illuminate\Support\Str;
 use KodeKeep\Livewired\Components\MailedInvitations;
 use KodeKeep\Livewired\Tests\TestCase;
-use KodeKeep\Livewired\Tests\User;
-use KodeKeep\Teams\Models\Team;
 use Livewire\Livewire;
-use Ramsey\Uuid\Uuid;
 
 class MailedInvitationsTest extends TestCase
 {
@@ -29,36 +25,23 @@ class MailedInvitationsTest extends TestCase
         $user = $this->user();
         $team = $this->team();
 
-        $invitationId = $this->createInvitation($team, $user);
+        $invitation = $this->createInvitation($team, $user);
 
         $this->actingAs($user);
 
         $this->assertDatabaseHas('team_invitations', [
-            'id'      => $invitationId,
+            'id'      => $invitation->id,
             'user_id' => $team->id,
         ]);
 
         $this->actingAs($team->owner);
 
         Livewire::test(MailedInvitations::class)
-            ->call('cancelInvitation', $invitationId);
+            ->call('cancelInvitation', $invitation->id);
 
         $this->assertDatabaseMissing('team_invitations', [
-            'id'      => $invitationId,
+            'id'      => $invitation->id,
             'user_id' => $team->id,
         ]);
-    }
-
-    protected function createInvitation(Team $team, User $user): int
-    {
-        return $team->invitations()->create([
-            'id'           => Uuid::uuid4(),
-            'user_id'      => $user->id,
-            'role'         => 'member',
-            'permissions'  => [],
-            'email'        => $this->faker->email,
-            'accept_token' => Str::random(40),
-            'reject_token' => Str::random(40),
-        ])->id;
     }
 }

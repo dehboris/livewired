@@ -15,9 +15,11 @@ namespace KodeKeep\Livewired\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use KodeKeep\Addresses\Providers\AddressesServiceProvider;
 use KodeKeep\Livewired\Providers\LivewiredServiceProvider;
 use KodeKeep\NotificationMethods\Providers\NotificationMethodsServiceProvider;
+use KodeKeep\Teams\Contracts\TeamInvitation;
 use KodeKeep\Teams\Providers\TeamsServiceProvider;
 use Laravel\Airlock\AirlockServiceProvider;
 use Laravel\Airlock\PersonalAccessToken;
@@ -25,6 +27,7 @@ use Livewire\LivewireServiceProvider;
 use Mpociot\VatCalculator\VatCalculatorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use PragmaRX\Google2FALaravel\ServiceProvider as TwoFactorServiceProvider;
+use Ramsey\Uuid\Uuid;
 use Spatie\PersonalDataExport\PersonalDataExportServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -155,5 +158,18 @@ abstract class TestCase extends Orchestra
         $user->refresh();
 
         return $token;
+    }
+
+    protected function createInvitation(Team $team, User $user): TeamInvitation
+    {
+        return $team->invitations()->create([
+            'id'           => Uuid::uuid4(),
+            'user_id'      => $user->id,
+            'role'         => 'member',
+            'permissions'  => [],
+            'email'        => $user->email,
+            'accept_token' => Str::random(40),
+            'reject_token' => Str::random(40),
+        ]);
     }
 }
